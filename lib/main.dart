@@ -1,3 +1,4 @@
+import 'package:bullet_buddy/pages/create_account_page.dart';
 import 'package:bullet_buddy/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        '/login': (context) => LoginPage(),
+        '/create': (context)=> CreateAccountPage(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
