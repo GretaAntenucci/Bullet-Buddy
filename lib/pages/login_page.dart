@@ -1,172 +1,143 @@
 import 'package:bullet_buddy/shapes/bottom_shape.dart';
 import 'package:bullet_buddy/shapes/top_shape.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bullet_buddy/widgets/custom_text_field.dart';
+import 'package:bullet_buddy/widgets/gradient_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
-  ValueNotifier<bool> open = ValueNotifier(true);
-
-  // void changeIcon() {
-  //   open.value
-  //       ? Icon(Icons.add)
-  //       : Icon(Icons.remove_red_eye_outlined);
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          TopShape(),
-          BottomShape(),
-          SafeArea(
-            child: ValueListenableBuilder(
-              valueListenable: open,
-              builder: (context, value, child) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'Bullet Buddy',
-                      style: TextStyle(
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                      ),
+      body: Stack(children: [
+        /// Gradient curves
+        const TopShape(),
+        const BottomShape(),
+        SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                /// App name
+                Padding(
+                  padding: const EdgeInsets.only(top: 103),
+                  child: Text(
+                    'Bullet Buddy',
+                    style: GoogleFonts.lavishlyYours(
+                      fontSize: 48,
+                      color: Theme.of(context).primaryColor,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text('Sign in to your account'),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Form(
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 8.0,
-                            ),
-                            child: TextField(
-                              keyboardType: TextInputType.emailAddress,
-                              decoration: InputDecoration(
-                                prefixIcon: const Icon(Icons.person),
-                                hintText: 'Email',
-                                border: OutlineInputBorder(
-                                  borderSide: const BorderSide()
-                                      .copyWith(color: Colors.grey),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(50),
-                                  ),
-                                ),
-                              ),
-                            ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 30,
+                ),
+
+                /// Subtitle
+                const Text('Sign in to your account'),
+                const SizedBox(
+                  height: 20,
+                ),
+
+                /// Form
+                Form(
+                  child: Column(
+                    children: [
+                      /// Email field
+                      Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 10,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 8.0,
-                            ),
-                            child: TextField(
-                              keyboardType: TextInputType.text,
-                              obscureText: open.value,
-                              decoration: InputDecoration(
-                                constraints: const BoxConstraints(
-                                  maxHeight: 70,
-                                  maxWidth: double.infinity,
-                                ),
-                                suffixIcon: IconButton(
-                                  splashColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onPressed: () {
-                                    open.value = !open.value;
-                                  },
-                                  icon: open.value
-                                      ? const Icon(Icons.visibility_off)
-                                      : const Icon(Icons.remove_red_eye),
-                                ),
-                                prefixIcon: const Icon(Icons.lock),
-                                hintText: 'Password',
-                                border: OutlineInputBorder(
-                                    borderSide: const BorderSide()
-                                        .copyWith(color: Colors.grey),
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(50))),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: TextButton(
-                        onPressed: () {},
-                        child: const Text('Forgot your password?'),
-                      ),
-                    ),
-                    OutlinedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            Theme.of(context).primaryColor),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(13),
-                          ),
+                          child: CustomTextField(
+                            icon: const Icon(Icons.person),
+                            hintText: 'Email',
+                            textInputType: TextInputType.emailAddress,
+                          )),
+
+                      /// Password field
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 10,
                         ),
+                        child: CustomTextField.password(
+                          hintText: 'Password',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                /// Button forgot password
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 40),
+                    child: TextButton(
+                      style: const ButtonStyle(
+                        overlayColor:
+                            MaterialStatePropertyAll(Colors.transparent),
                       ),
                       onPressed: () {},
                       child: const Text(
-                        'Sign in',
+                        'Forgot your password?',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
+                          color: Color(0xFF848484),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 50,
+                  ),
+                ),
+
+                /// Sign in button
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 60,
+                    left: 100,
+                    right: 100,
+                  ),
+                  child: GradientButton(
+                    text: 'Sign in',
+                    action: () {},
+                  ),
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+
+                /// Create account text + button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    /// Text
+                    const Text(
+                      "Don't have an account?",
+                      style: TextStyle(fontSize: 20),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Don't have an account?"),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, '/create');
-                            },
-                            child: const Text('Create'),
-                          ),
-                      ],
+
+                    /// Button create account
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/create');
+                      },
+                      child: const Text(
+                        'Create',
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontSize: 20,
+                        ),
+                      ),
                     ),
                   ],
-                );
-              },
+                ),
+              ],
             ),
           ),
-        ]
-      ),
+        ),
+      ]),
     );
   }
 }
-
-// TextField(
-// keyboardType: TextInputType.text,
-// obscureText: true,
-// decoration: InputDecoration(
-// suffix: ElevatedButton(
-// onPressed: () => icon = Icon(Icons.traffic),
-// child: icon,
-// ),
-// prefixIcon: const Icon(Icons.lock),
-// hintText: 'Password',
-// border: OutlineInputBorder(
-// borderSide: const BorderSide()
-//     .copyWith(color: Colors.grey),
-// borderRadius:
-// const BorderRadius.all(Radius.circular(50))),
-// ),
-// ),
