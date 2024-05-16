@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +96,8 @@ class LoginPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(
                     top: 60,
-                    left: 100,
-                    right: 100,
+                    left: 80,
+                    right: 80,
                   ),
                   child: GradientButton(
                     text: 'Sign in',
