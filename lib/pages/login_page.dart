@@ -79,7 +79,7 @@ class LoginPage extends StatelessWidget {
                     child: TextButton(
                       style: const ButtonStyle(
                         overlayColor:
-                            MaterialStatePropertyAll(Colors.transparent),
+                            WidgetStatePropertyAll(Colors.transparent),
                       ),
                       onPressed: () {},
                       child: const Text(
