@@ -1,5 +1,6 @@
 import 'package:bullet_buddy/custom_bottom_bar.dart';
 import 'package:bullet_buddy/pages/create_account_page.dart';
+import 'package:bullet_buddy/pages/home_page.dart';
 import 'package:bullet_buddy/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/login': (context) => LoginPage(),
-        '/create': (context)=> CreateAccountPage(),
+        '/login': (context) => const LoginPage(),
+        '/create': (context) => const CreateAccountPage(),
+        '/home': (context) => const HomePage(),
         '/bottom': (context) => const CustomBottomBar(),
       },
       debugShowCheckedModeBanner: false,
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginPage(),
+      home: const LoginPage(),
     );
   }
 }

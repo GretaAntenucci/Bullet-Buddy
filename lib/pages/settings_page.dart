@@ -10,7 +10,7 @@ class SettingsPage extends StatelessWidget {
       child: const Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children:  [
+        children: [
           Icon(
             Icons.settings,
             size: 120,
@@ -23,6 +23,6 @@ class SettingsPage extends StatelessWidget {
           )
         ],
       ),
-    );;
+    );
   }
 }

@@ -102,7 +102,8 @@ class LoginPage extends StatelessWidget {
                   child: GradientButton(
                     text: 'Sign in',
                     action: () {
-                      Navigator.pushNamed(context, '/bottom');
+                      // TODO da togliere
+                      Navigator.pushNamed(context, '/home');
                     },
                   ),
                 ),
