@@ -19,7 +19,10 @@ class SettingsPage extends StatelessWidget {
           Text(
             'Settings Page',
             style: TextStyle(
-                color: Colors.white, fontSize: 30, fontWeight: FontWeight.w700),
+              color: Colors.white,
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+            ),
           )
         ],
       ),

@@ -9,15 +9,18 @@ class TopShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ImageFiltered(
-      imageFilter: ImageFilter.blur(sigmaY: 5,sigmaX: 5),
+      imageFilter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
       child: ClipPath(
         clipper: TopPath(),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.topRight,
-                colors: [Colors.orange[200]!, Colors.purple[500]!,]
+              begin: Alignment.topLeft,
+              end: Alignment.topRight,
+              colors: [
+                Colors.pink[200]!,
+                Colors.purple[900]!,
+              ],
             ),
           ),
         ),
@@ -25,4 +28,3 @@ class TopShape extends StatelessWidget {
     );
   }
 }
-

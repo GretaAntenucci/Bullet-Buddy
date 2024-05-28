@@ -20,7 +20,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       /// App bar
       appBar: AppBar(
-        backgroundColor: const Color(0xFFC69BD9),
+        backgroundColor: const Color(0xFFF5F4F4),
 
         /// Visibility widget
         /// if visible shows the title if not shows the search bar
