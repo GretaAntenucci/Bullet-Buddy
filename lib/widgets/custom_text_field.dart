@@ -82,7 +82,7 @@ class CustomTextField extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.7),
                     spreadRadius: 5,
                     blurRadius: 7,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   )
                 ]),
             child: TextField(
