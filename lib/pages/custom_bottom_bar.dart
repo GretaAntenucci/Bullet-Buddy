@@ -28,26 +28,25 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
     return Scaffold(
       body: PageView(
         controller: _pageController,
-        onPageChanged: (index){
+        onPageChanged: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        children:  const <Widget>[
+        children: const <Widget>[
           NewDiaryPage(),
           HomePage(),
           ProfilePage(),
           SettingsPage(),
         ],
       ),
-      bottomNavigationBar:
-      CurvedNavigationBar(
+      bottomNavigationBar: CurvedNavigationBar(
         index: _currentIndex,
-        backgroundColor: Colors.blueGrey,
-        buttonBackgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        buttonBackgroundColor: Theme.of(context).hintColor,
         color: const Color.fromARGB(255, 255, 240, 219),
         height: 65,
-        items:  <Widget>[
+        items: <Widget>[
           const Icon(
             Icons.add_circle_outline,
             size: 35,
