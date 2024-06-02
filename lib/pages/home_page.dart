@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             height: 40,
             child: SearchBar(
               elevation: WidgetStatePropertyAll(2),
-              backgroundColor: WidgetStatePropertyAll(Color(0xFFC69BD9)),
+              backgroundColor: WidgetStatePropertyAll(Color(0xFFF5F4F4)),
             ),
           ),
 
