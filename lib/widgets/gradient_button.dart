@@ -18,17 +18,18 @@ class GradientButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.pink[200]!,
-                Colors.purple[900]!,
-              ]),
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.pink[200]!,
+              Colors.purple[900]!,
+            ],
+          ),
         ),
         child: ElevatedButton(
-          style: ButtonStyle(
-            elevation: MaterialStateProperty.all(0),
-            backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          style: const ButtonStyle(
+            elevation: WidgetStatePropertyAll(0),
+            backgroundColor: WidgetStatePropertyAll(Colors.transparent),
           ),
           onPressed: action,
           child: Text(

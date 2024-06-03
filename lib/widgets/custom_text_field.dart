@@ -29,46 +29,74 @@ class CustomTextField extends StatelessWidget {
         ? ValueListenableBuilder(
             valueListenable: open,
             builder: (context, value, child) {
-              return TextField(
-                keyboardType: textInputType,
-                obscureText: open.value,
-                decoration: InputDecoration(
-                  constraints: const BoxConstraints(
-                    maxHeight: 70,
-                    maxWidth: double.infinity,
-                  ),
-                  suffixIcon: IconButton(
-                    splashColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onPressed: () => open.value = !open.value,
-                    icon: open.value
-                        ? const Icon(Icons.visibility_off)
-                        : const Icon(Icons.remove_red_eye),
-                  ),
-                  prefixIcon: icon ??
-                      const Icon(
-                        Icons.lock,
+              return Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.7),
+                        spreadRadius: 5,
+                        blurRadius: 7,
+                        offset: const Offset(0, 3),
+                      )
+                    ]),
+                child: TextField(
+                  keyboardType: textInputType,
+                  obscureText: open.value,
+                  decoration: InputDecoration(
+                    constraints: const BoxConstraints(
+                      maxHeight: 70,
+                      maxWidth: double.infinity,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    suffixIcon: IconButton(
+                      splashColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onPressed: () => open.value = !open.value,
+                      icon: open.value
+                          ? const Icon(Icons.visibility_off)
+                          : const Icon(Icons.remove_red_eye),
+                    ),
+                    prefixIcon: icon ??
+                        const Icon(
+                          Icons.lock,
+                        ),
+                    hintText: hintText,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
                       ),
-                  hintText: hintText,
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide().copyWith(color: Colors.grey),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(50),
                     ),
                   ),
                 ),
               );
             },
           )
-        : TextField(
-            keyboardType: textInputType,
-            decoration: InputDecoration(
-              prefixIcon: icon ?? const Icon(Icons.person),
-              hintText: hintText,
-              border: OutlineInputBorder(
-                borderSide: const BorderSide().copyWith(color: Colors.grey),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(50),
+        : Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(50),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.7),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3),
+                  )
+                ]),
+            child: TextField(
+              keyboardType: textInputType,
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: icon ?? const Icon(Icons.person),
+                hintText: hintText,
+                border: const OutlineInputBorder(
+                  borderSide: BorderSide.none,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(50),
+                  ),
                 ),
               ),
             ),

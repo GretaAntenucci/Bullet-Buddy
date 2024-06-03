@@ -9,20 +9,22 @@ class BottomShape extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ImageFiltered(
-      imageFilter: ImageFilter.blur(sigmaY: 5,sigmaX: 5),
+      imageFilter: ImageFilter.blur(sigmaY: 5, sigmaX: 5),
       child: ClipPath(
         clipper: BottomPath(),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.pink[200]!, Colors.purple[900]!,]
+              begin: Alignment.centerLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.pink[200]!,
+                Colors.purple[900]!,
+              ],
             ),
           ),
         ),
       ),
-
     );
   }
 }
