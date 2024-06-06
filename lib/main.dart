@@ -17,15 +17,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
    return MaterialApp(
         routes: {
-          '/new': (context) => NewDiaryPage(),
-          '/login': (context) => LoginPage(),
-          '/create': (context) => CreateAccountPage(),
+          '/new': (context) =>   const NewDiaryPage(),
+          '/login': (context) => const LoginPage(),
+          '/create': (context) => const CreateAccountPage(),
           '/bottom': (context) => const CustomBottomBar(),
-
+         // '/templates': (context) =>  TemplateMenuPage(),
         },
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        home: LoginPage(),
+        home: const LoginPage(),
       );
   }
 }
