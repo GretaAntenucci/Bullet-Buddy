@@ -1,6 +1,6 @@
+import 'package:bullet_buddy/pages/page_view_page.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:bullet_buddy/pages/home_page.dart';
-import 'package:bullet_buddy/pages/new_diary_page.dart';
 import 'package:bullet_buddy/pages/profile_page.dart';
 import 'package:bullet_buddy/pages/settings_page.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +34,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           });
         },
         children: const <Widget>[
-          NewDiaryPage(),
+          PageViewPage(),
           HomePage(),
           ProfilePage(),
           SettingsPage(),
