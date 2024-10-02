@@ -40,9 +40,10 @@ class _HomePageState extends State<HomePage> {
           child: Text(
             'Bullet Buddy',
             style: GoogleFonts.lavishlyYours(
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor),
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              color: Theme.of(context).primaryColor,
+            ),
           ),
         ),
 

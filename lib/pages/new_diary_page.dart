@@ -6,7 +6,7 @@ import 'package:bullet_buddy/widgets/draggable_template.dart';
 import 'package:flutter/material.dart';
 
 class NewDiaryPage extends StatefulWidget {
-   const NewDiaryPage({super.key});
+  const NewDiaryPage({super.key});
 
   @override
   State<NewDiaryPage> createState() => _NewDiaryPageState();
@@ -28,20 +28,32 @@ class _NewDiaryPageState extends State<NewDiaryPage> {
         final templateSize = containerRenderBox.size;
 
         if (newPosition >= placedTemplates[i].position &&
-            newPosition.dx <= placedTemplates[i].position.dx + templateSize.width &&
-            newPosition.dy <= placedTemplates[i].position.dy + templateSize.height ||
-            newPosition.dx + templateSize.width >= placedTemplates[i].position.dx &&
-                newPosition.dy + templateSize.height >= placedTemplates[i].position.dy &&
-                newPosition.dx + templateSize.width <= placedTemplates[i].position.dx + templateSize.width &&
-                newPosition.dy + templateSize.height <= placedTemplates[i].position.dy + templateSize.height ||
+                newPosition.dx <=
+                    placedTemplates[i].position.dx + templateSize.width &&
+                newPosition.dy <=
+                    placedTemplates[i].position.dy + templateSize.height ||
+            newPosition.dx + templateSize.width >=
+                    placedTemplates[i].position.dx &&
+                newPosition.dy + templateSize.height >=
+                    placedTemplates[i].position.dy &&
+                newPosition.dx + templateSize.width <=
+                    placedTemplates[i].position.dx + templateSize.width &&
+                newPosition.dy + templateSize.height <=
+                    placedTemplates[i].position.dy + templateSize.height ||
             newPosition.dx >= placedTemplates[i].position.dx &&
-                newPosition.dy + templateSize.height >= placedTemplates[i].position.dy &&
-                newPosition.dx <= placedTemplates[i].position.dx + templateSize.width &&
-                newPosition.dy + templateSize.height <= placedTemplates[i].position.dy + templateSize.height ||
-            newPosition.dx + templateSize.width >= placedTemplates[i].position.dx &&
+                newPosition.dy + templateSize.height >=
+                    placedTemplates[i].position.dy &&
+                newPosition.dx <=
+                    placedTemplates[i].position.dx + templateSize.width &&
+                newPosition.dy + templateSize.height <=
+                    placedTemplates[i].position.dy + templateSize.height ||
+            newPosition.dx + templateSize.width >=
+                    placedTemplates[i].position.dx &&
                 newPosition.dy >= placedTemplates[i].position.dy &&
-                newPosition.dx + templateSize.width <= placedTemplates[i].position.dx + templateSize.width &&
-                newPosition.dy <= placedTemplates[i].position.dy + templateSize.height) {
+                newPosition.dx + templateSize.width <=
+                    placedTemplates[i].position.dx + templateSize.width &&
+                newPosition.dy <=
+                    placedTemplates[i].position.dy + templateSize.height) {
           // print(newPosition.dy);
           // print(placedTemplates[i].top);
           // print(placedTemplates[i].top + templateSize.height);
@@ -71,14 +83,16 @@ class _NewDiaryPageState extends State<NewDiaryPage> {
     final Offset newPosition = details.offset - const Offset(20, 120);
 
     // Verifica se il drop è avvenuto all'interno del container
-    final RenderBox containerRenderBox = cont.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox containerRenderBox =
+        cont.currentContext!.findRenderObject() as RenderBox;
     final Size containerSize = containerRenderBox.size;
-    final RenderBox templateRenderBox = templatePosition.template.containerKey?.currentContext!.findRenderObject() as RenderBox;
+    final RenderBox templateRenderBox = templatePosition
+        .template.containerKey?.currentContext!
+        .findRenderObject() as RenderBox;
     final Size templateSize = templateRenderBox.size;
 
-
     if (newPosition >= Offset.zero &&
-        newPosition <=  containerSize &&
+        newPosition <= containerSize &&
         newPosition.dx + templateSize.width >= 0 &&
         newPosition.dy + templateSize.height >= 0 &&
         newPosition.dx + templateSize.width <= containerSize.width &&
@@ -92,9 +106,9 @@ class _NewDiaryPageState extends State<NewDiaryPage> {
         newPosition.dx <= containerSize.width &&
         newPosition.dy + templateSize.height <= containerSize.height) {
       if (_checkPosition(placedTemplates, newPosition)) {
-setState(() {
-      templatePosition.position = newPosition;
-    });
+        setState(() {
+          templatePosition.position = newPosition;
+        });
       }
     }
   }
@@ -102,14 +116,13 @@ setState(() {
   void _navigateToTemplateSelection(BuildContext context) async {
     final selectedTemplate = await Navigator.push<TemplateWidget>(
       context,
-      MaterialPageRoute(builder: (context) =>  const TemplateMenuPage()),
+      MaterialPageRoute(builder: (context) => const TemplateMenuPage()),
     );
 
     if (selectedTemplate != null) {
       _addTemplate(selectedTemplate);
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -132,27 +145,27 @@ setState(() {
         backgroundColor: const Color.fromARGB(255, 255, 240, 219),
         foregroundColor: Colors.purple[900]!,
       ),
-        body: DragTarget(builder: (context, candidateData, rejectedData) {
-          return Container(
-            key: cont,
-            margin: const EdgeInsets.all(20),
-            color: Colors.deepPurpleAccent,
-            child: Stack(
-              children: placedTemplates.map((templatePosition) {
-                return Positioned(
-                  left: templatePosition.position.dx,
-                  top: templatePosition.position.dy,
-                  child: DraggableTemplate(
-                    template: templatePosition.template,
-                    onDragEnd: (details) {
-                      _updateTemplatePosition(details, templatePosition);
-                    },
-                  ),
-                );
-              }).toList(),
-            ),
-          );
-        }),
+      body: DragTarget(builder: (context, candidateData, rejectedData) {
+        return Container(
+          key: cont,
+          margin: const EdgeInsets.all(20),
+          color: Colors.deepPurpleAccent,
+          child: Stack(
+            children: placedTemplates.map((templatePosition) {
+              return Positioned(
+                left: templatePosition.position.dx,
+                top: templatePosition.position.dy,
+                child: DraggableTemplate(
+                  template: templatePosition.template,
+                  onDragEnd: (details) {
+                    _updateTemplatePosition(details, templatePosition);
+                  },
+                ),
+              );
+            }).toList(),
+          ),
+        );
+      }),
       floatingActionButton: ExpandableFab(
         distance: 60,
         children: [
@@ -168,7 +181,6 @@ setState(() {
           ),
         ],
       ),
-
     );
   }
 }
@@ -178,11 +190,9 @@ class _TemplatePosition {
   Offset position;
   GlobalKey key;
 
-
   _TemplatePosition({
     required this.template,
     required this.position,
     required this.key,
-
   });
 }
