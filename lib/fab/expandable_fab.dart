@@ -6,13 +6,17 @@ class ExpandableFab extends StatefulWidget {
   const ExpandableFab({
     super.key,
     this.initialOpen,
+    this.heroTag,
     required this.distance,
     required this.children,
+    this.shape,
   });
 
   final bool? initialOpen;
   final double distance;
   final List<Widget> children;
+  final String? heroTag;
+  final ShapeBorder? shape;
 
   @override
   State<ExpandableFab> createState() => _ExpandableFabState();
@@ -34,6 +38,7 @@ class _ExpandableFabState extends State<ExpandableFab>
       duration: const Duration(milliseconds: 250),
       vsync: this,
     );
+
     ///controllo animazione tasti sotto menu
     _expandAnimation = CurvedAnimation(
       curve: Curves.fastOutSlowIn,
@@ -48,7 +53,7 @@ class _ExpandableFabState extends State<ExpandableFab>
     super.dispose();
   }
 
-  ///cambio dello stato, menu chiuso- aperto
+  ///cambio dello stato, menu chiuso - aperto
   void _toggle() {
     setState(() {
       _open = !_open;
@@ -60,7 +65,7 @@ class _ExpandableFabState extends State<ExpandableFab>
     });
   }
 
-  ///scabio tra nenu aperto e chiuso
+  ///scambio tra menu aperto e chiuso
   ///determina la posizione in cui si tovano
   @override
   Widget build(BuildContext context) {
@@ -90,7 +95,10 @@ class _ExpandableFabState extends State<ExpandableFab>
           child: InkWell(
             onTap: _toggle,
             child: Padding(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(12),
+
+              /// TODO pick one
+              // padding: const EdgeInsets.all(8),
               child: Icon(
                 Icons.close,
                 color: Theme.of(context).primaryColor,
@@ -107,13 +115,10 @@ class _ExpandableFabState extends State<ExpandableFab>
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
-    //final step = 90.0 / (count - 1);
-    for (var i = 0, distance = 0.0;//angleInDegrees = 0.0;
-    i < count;
-    i++, distance += 60 /*angleInDegrees += step*/) {
+    for (var i = 0, distance = 0.0; i < count; i++, distance += 60) {
       children.add(
         ExpandingActionButton(
-          directionInDegrees: 90,//angleInDegrees,
+          directionInDegrees: 90,
           maxDistance: distance + widget.distance,
           progress: _expandAnimation,
           child: widget.children[i],
@@ -135,15 +140,23 @@ class _ExpandableFabState extends State<ExpandableFab>
           _open ? 0.7 : 1.0,
           1.0,
         ),
+
         ///controlla animazione in ingresso
         duration: const Duration(milliseconds: 250),
         curve: const Interval(0.0, 0.5, curve: Curves.easeOut),
+
         ///controllo animazione in uscita
         child: AnimatedOpacity(
           opacity: _open ? 0.0 : 1.0,
-          curve: const Interval(0.25, 1.0, curve: Curves.easeInOut,),
+          curve: const Interval(
+            0.25,
+            1.0,
+            curve: Curves.easeInOut,
+          ),
           duration: const Duration(milliseconds: 250),
           child: FloatingActionButton(
+            shape: widget.shape,
+            heroTag: widget.heroTag ?? 'test',
             onPressed: _toggle,
             child: const Icon(Icons.edit_note),
           ),

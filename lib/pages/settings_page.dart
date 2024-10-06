@@ -10,7 +10,6 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   bool _value = false;
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -184,6 +183,5 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
-    ;
   }
 }

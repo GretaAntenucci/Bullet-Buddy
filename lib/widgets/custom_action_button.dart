@@ -22,12 +22,13 @@ class CustomActionButton extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           width: 20,
         ),
         SizedBox(
           height: 50,
           child: FloatingActionButton(
+            heroTag: null,
             shape: const CircleBorder(),
             clipBehavior: Clip.antiAlias,
             backgroundColor: theme.colorScheme.secondary,
