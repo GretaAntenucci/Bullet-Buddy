@@ -7,6 +7,9 @@ class CustomTextField extends StatelessWidget {
   final String? hintText;
   final Widget? icon;
   final TextInputType textInputType;
+
+  final BorderRadius defaultBorderRadius = BorderRadius.circular(50);
+
   CustomTextField({
     super.key,
     this.isPass = false,
@@ -28,25 +31,26 @@ class CustomTextField extends StatelessWidget {
     return isPass
         ? ValueListenableBuilder(
             valueListenable: open,
-            builder: (context, value, child) {
+            builder: (BuildContext context, bool value, Widget? child) {
               return Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.7),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: const Offset(0, 3),
-                      )
-                    ]),
+                  borderRadius: defaultBorderRadius,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.7),
+                      spreadRadius: 5,
+                      blurRadius: 7,
+                      offset: const Offset(0, 3),
+                    )
+                  ],
+                ),
                 child: TextField(
                   keyboardType: textInputType,
                   obscureText: open.value,
                   decoration: InputDecoration(
-                    constraints: const BoxConstraints(
+                    constraints: BoxConstraints(
                       maxHeight: 70,
-                      maxWidth: double.infinity,
+                      maxWidth: MediaQuery.of(context).size.width,
                     ),
                     filled: true,
                     fillColor: Colors.white,
@@ -63,43 +67,44 @@ class CustomTextField extends StatelessWidget {
                           Icons.lock,
                         ),
                     hintText: hintText,
-                    border: const OutlineInputBorder(
+                    border: OutlineInputBorder(
                       borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(50),
-                      ),
+                      borderRadius: defaultBorderRadius,
                     ),
                   ),
                 ),
               );
             },
           )
-        : Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.7),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3),
-                  )
-                ]),
-            child: TextField(
-              keyboardType: textInputType,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                prefixIcon: icon ?? const Icon(Icons.person),
-                hintText: hintText,
-                border: const OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-              ),
-            ),
-          );
+        : notPasswordCustomTextField();
+  }
+
+  Widget notPasswordCustomTextField() {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: defaultBorderRadius,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.7),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      child: TextField(
+        keyboardType: textInputType,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          prefixIcon: icon ?? const Icon(Icons.person),
+          hintText: hintText,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: defaultBorderRadius,
+          ),
+        ),
+      ),
+    );
   }
 }
