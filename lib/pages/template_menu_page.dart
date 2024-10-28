@@ -64,8 +64,11 @@ class _TemplateMenuPageState extends State<TemplateMenuPage> {
         itemCount: displayedTemplates.length,
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: ()  async {
-              Navigator.pop(context, await _selectedTemplate(index),);
+            onTap: () async {
+              Navigator.pop(
+                context,
+                await _selectedTemplate(index),
+              );
             },
             child: displayedTemplates[index],
           );

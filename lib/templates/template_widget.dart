@@ -5,8 +5,12 @@ class TemplateWidget extends StatelessWidget {
   final String text;
   GlobalKey<FormState>? containerKey;
 
-
-   TemplateWidget({super.key, required this.isEditable, this.text = '', required this.containerKey,});
+  TemplateWidget({
+    super.key,
+    required this.isEditable,
+    this.text = '',
+    required this.containerKey,
+  });
 
   @override
   Widget build(BuildContext context) {
